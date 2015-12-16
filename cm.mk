@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/oneplus/oneplus2/full_oneplus2.mk)
+$(call inherit-product, device/letv/x1na/full_x1na.mk)
 
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-# Inherit oneplus2-specific vendor tree
-$(call inherit-product-if-exists, vendor/oneplus/oneplus2/oneplus2-vendor.mk)
+# Inherit x1na-specific vendor tree
+$(call inherit-product-if-exists, vendor/letv/x1na/x1na-vendor.mk)

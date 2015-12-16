@@ -25,9 +25,9 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-# Boot animation
-TARGET_SCREEN_HEIGHT := 1920
-TARGET_SCREEN_WIDTH := 1080
+# Boot animation 1440x2560
+TARGET_SCREEN_HEIGHT := 2560
+TARGET_SCREEN_WIDTH := 1440
 
 # Haters gonna hate..
 PRODUCT_CHARACTERISTICS := nosdcard
@@ -162,6 +162,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
 
+# Kernel
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/zImage:kernel \
+    $(LOCAL_PATH)/dt.img:dt.img
+
 # Keylayouts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/fpc1020.kl:system/usr/keylayout/fpc1020.kl \
@@ -259,4 +264,4 @@ PRODUCT_PACKAGES += \
     libxml2
 
 # Inherit from oppo-common
-$(call inherit-product, device/oppo/common/common.mk)
+#$(call inherit-product, device/letv/common/common.mk)

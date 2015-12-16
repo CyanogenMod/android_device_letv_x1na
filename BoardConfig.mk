@@ -20,12 +20,12 @@
 # definition file).
 #
 
-# Inherit from oppo-common
--include device/oppo/common/BoardConfigCommon.mk
+# Inherit from letv-common
+#-include device/letv/common/BoardConfigCommon.mk
 
-TARGET_OTA_ASSERT_DEVICE := OnePlus2,oneplus2
+TARGET_OTA_ASSERT_DEVICE := x1_na
 
-BOARD_VENDOR := oneplus
+BOARD_VENDOR := letv
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8994
@@ -63,11 +63,12 @@ BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_RAMDISK_OFFSET := 0x01000000
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-BOARD_MKBOOTIMG_ARGS := --tags_offset 0x00000100
-TARGET_CUSTOM_DTBTOOL := dtbToolOP2
-TARGET_KERNEL_SOURCE := kernel/oneplus/msm8994
-TARGET_KERNEL_CONFIG := cm_oneplus2_defconfig
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --dt device/letv/x1na/dt.img --tags_offset 0x00000100
+#BOARD_MKBOOTIMG_ARGS := --tags_offset 0x00000100
+#TARGET_CUSTOM_DTBTOOL := dtbToolOP2
+#TARGET_KERNEL_SOURCE := kernel/oneplus/msm8994
+#TARGET_KERNEL_CONFIG := cm_oneplus2_defconfig
+#TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_USES_UNCOMPRESSED_KERNEL := true
 
 # QCOM hardware
@@ -101,7 +102,7 @@ AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
 # Bluetooth
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_HAS_QCA_BT_ROME := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/oneplus/oneplus2/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/letv/x1na/bluetooth
 
 # Charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
@@ -110,7 +111,7 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 EXTENDED_FONT_FOOTPRINT := true
 
 # GPS
-TARGET_GPS_HAL_PATH := device/oneplus/oneplus2/gps
+TARGET_GPS_HAL_PATH := device/letv/x1na/gps
 TARGET_NO_RPC := true
 
 # Graphics
@@ -130,7 +131,7 @@ OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-TARGET_LIBINIT_DEFINES_FILE := device/oneplus/oneplus2/init/init_oneplus2.c
+TARGET_LIBINIT_DEFINES_FILE := device/letv/x1na/init/init_x1na.c
 
 # RPC
 TARGET_NO_RPC := true
@@ -161,21 +162,21 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
-BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
+BOARD_CACHEIMAGE_PARTITION_SIZE := 805306368
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2684354560
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 59047394304
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 57906019840
 BOARD_FLASH_BLOCK_SIZE := 262144
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/oneplus/oneplus2/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB := device/letv/x1na/rootdir/etc/fstab.qcom
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += device/oneplus/oneplus2/sepolicy
+BOARD_SEPOLICY_DIRS += device/letv/x1na/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     adspd.te \
@@ -215,4 +216,4 @@ BOARD_SEPOLICY_UNION += \
 BOARD_USES_QC_TIME_SERVICES := true
 
 # inherit from the proprietary version
--include vendor/oneplus/oneplus2/BoardConfigVendor.mk
+-include vendor/letv/x1na/BoardConfigVendor.mk

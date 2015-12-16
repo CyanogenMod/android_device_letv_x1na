@@ -1,9 +1,9 @@
-# system.prop for OnePlus2
+# system.prop for x1_na
 
-ro.build.product=OnePlus2
-ro.product.device=OnePlus2
-ro.build.description=OnePlus2-user 5.1.1 LMY47V 21 dev-keys
-ro.build.fingerprint=OnePlus/OnePlus2/OnePlus2:5.1.1/LMY47V/1436933040:user/release-keys
+ro.build.product=x1_na
+ro.product.device=x1_na
+ro.build.description=x1_na-user 5.0.2 BGXNAOP5000710231S 51 release-keys
+ro.build.fingerprint=Letv/Le1Pro_US/x1_na:5.0.2/BGXNAOP5000710231S/51:user/release-keys
 
 # RIL
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so

@@ -1,3 +1,3 @@
-add_lunch_combo cm_oneplus2-user
-add_lunch_combo cm_oneplus2-userdebug
-add_lunch_combo cm_oneplus2-eng
+add_lunch_combo cm_x1na-user
+add_lunch_combo cm_x1na-userdebug
+add_lunch_combo cm_x1na-eng
