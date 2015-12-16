@@ -64,11 +64,12 @@ BOARD_RAMDISK_OFFSET := 0x01000000
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --dt device/letv/x1na/dt.img --tags_offset 0x00000100
+#BOARD_CUSTOM_BOOTIMG_MK := true
 #BOARD_MKBOOTIMG_ARGS := --tags_offset 0x00000100
 #TARGET_CUSTOM_DTBTOOL := dtbToolOP2
-#TARGET_KERNEL_SOURCE := kernel/oneplus/msm8994
-#TARGET_KERNEL_CONFIG := cm_oneplus2_defconfig
-#TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+TARGET_KERNEL_SOURCE := kernel/oneplus/msm8994
+TARGET_KERNEL_CONFIG := cm_oneplus2_defconfig
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_USES_UNCOMPRESSED_KERNEL := true
 
 # QCOM hardware
