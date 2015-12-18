@@ -3,6 +3,10 @@
 -app/shutdownlistener/shutdownlistener.apk
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
+framework/com.qti.dpmframework.jar
+framework/dpmapi.jar
+framework/com.quicinc.wbc.jar
+framework/com.quicinc.wbcservice.jar
 -lib/libloc_api_v02.so
 -lib/libloc_ds_api.so
 -lib64/libloc_api_v02.so
