@@ -8,7 +8,7 @@ LOCAL_SRC_FILES := \
 LOCAL_CFLAGS += \
 	-Wall
 
-LOCAL_MODULE := dtbToolOP2
+LOCAL_MODULE := dtbToolV3
 LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_HOST_EXECUTABLE)
