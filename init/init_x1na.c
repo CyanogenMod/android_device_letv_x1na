@@ -28,6 +28,7 @@
  */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
@@ -35,6 +36,41 @@
 #include "util.h"
 
 #include "init_msm.h"
+
+#define BASEBAND "androidboot.baseband"
+#define BOOTDEVICE "androidboot.bootdevice"
+#define HWVER "android.letv.hardware_version"
+#define PANEL "mdss_mdp.panel"
+#define PRODUCT "android.letv.product"
+#define SERIALNO "androidboot.serialno"
+
+static void import_cmdline(char *name, int for_emulator)
+{
+    char *value = strchr(name, '=');
+    int name_len = strlen(name);
+
+    if (value == 0) return;
+    *value++ = 0;
+    if (name_len == 0) return;
+
+    if (!strcmp(name, BASEBAND)) {
+        property_set("ro.boot.baseband", value);
+        property_set("ro.baseband", value);
+    } else if (!strcmp(name, BOOTDEVICE))
+        property_set("ro.boot.bootdevice", value);
+    else if (!strcmp(name, HWVER))
+        property_set("ro.config.hardware_version", value);
+    else if (!strcmp(name, PANEL))
+        return; /* not sure what to do here */
+    else if (!strcmp(name, PRODUCT)) {
+        property_set("ro.config.product", value);
+        property_set("ro.product.model", value);
+        property_set("ro.product.device", value);
+    } else if (!strcmp(name, SERIALNO)) {
+        property_set("ro.boot.serialno", value);
+        property_set("ro.serialno", value);
+    }
+}
 
 void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type) {
     char device[PROP_VALUE_MAX];
@@ -45,12 +81,17 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     UNUSED(msm_ver);
     UNUSED(board_type);
 
-    rc = property_get("ro.cm.device", device);
-    if (!rc || !ISMATCH(device, "x1na"))
-        return;
-
+    import_kernel_cmdline(0, import_cmdline);
     /* America */
-    property_set("ro.product.model", "x1_na");
+    /* TODO: Parse these from kernel command line */
+    property_set("ro.board.platform", "msm8994");
+    property_set("ro.hardware", "qcom");
+    property_set("ro.boot.hardware", "qcom");
+    property_set("ro.bootloader", "unknown");
+    property_set("ro.bootmode", "unknown");
     property_set("ro.rf_version", "TDD_FDD_Am"); //Sure, why not
+    property_set("ro.sf.lcd_density", "480");
+    property_set("ro.boot.console", "ttyHSL0");
+    property_set("ro.product.board", "MSM8994");
 }
 
