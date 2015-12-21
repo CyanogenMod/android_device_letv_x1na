@@ -93,7 +93,7 @@ sys.io.scheduler=bfq
 
 # QC vendor extension
 ro.vendor.extension_library=libqti-perfd-client.so
-ro.frp.pst=/dev/block/bootdevice/by-name/config
+#ro.frp.pst=/dev/block/bootdevice/by-name/config
 drm.service.enabled=true
 
 # Sensors

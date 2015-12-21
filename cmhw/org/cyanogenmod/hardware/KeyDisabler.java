@@ -31,14 +31,14 @@ import org.cyanogenmod.hardware.util.FileUtils;
 
 public class KeyDisabler {
 
-    private static String CONTROL_PATH = "/proc/nav_switch";
+    private static String CONTROL_PATH = "/sys/class/switch/mute_key";
 
     public static boolean isSupported() {
         return new File(CONTROL_PATH).exists();
     }
 
     public static boolean isActive() {
-        return (FileUtils.readOneLine(CONTROL_PATH).contains(":0"));
+        return (FileUtils.readOneLine(CONTROL_PATH).contains("0"));
     }
 
     public static boolean setActive(boolean state) {

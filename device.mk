@@ -22,6 +22,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
+PRODUCT_DEX_PREOPT_MODULE_CONFIGS := true
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
@@ -42,18 +43,29 @@ PRODUCT_PACKAGES += \
     init.class_main.sh \
     init.qcom.rc \
     init.qcom.sh \
-    init.qcom.usb.rc \
+    init.qcom.usb.max1.rc \
+    init.qcom.usb.max1_in.rc \
+    init.qcom.usb.x1_na.rc \
+    init.qcom.usb.x1.rc \
     init.qcom.usb.sh \
+    init.rc \
+    init.target.rc \
     ueventd.qcom.rc
 
 # Qcom init scripts for /etc
+#PRODUCT_PACKAGES += \
+#    init.qcom.bt.sh \
+#    init.qcom.fm.sh \
+#    init.qcom.post_boot.sh \
+#    init.qcom.uicc.sh \
+#    msm8994_hmp.sh \
+#    msm8994_tune.sh
+
+# Keyhandler
 PRODUCT_PACKAGES += \
-    init.qcom.bt.sh \
-    init.qcom.fm.sh \
-    init.qcom.post_boot.sh \
-    init.qcom.uicc.sh \
-    msm8994_hmp.sh \
-    msm8994_tune.sh
+    com.cyanogenmod.keyhandler
+
+PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -92,13 +104,51 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/acdb/MTP_Bluetooth_cal.acdb:system/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP_General_cal.acdb:system/etc/acdbdata/MTP/MTP_General_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP_Global_cal.acdb:system/etc/acdbdata/MTP/MTP_Global_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP_Handset_cal.acdb:system/etc/acdbdata/MTP/MTP_Handset_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP_Hdmi_cal.acdb:system/etc/acdbdata/MTP/MTP_Hdmi_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP_Headset_cal.acdb:system/etc/acdbdata/MTP/MTP_Headset_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP_Speaker_cal.acdb:system/etc/acdbdata/MTP/MTP_Speaker_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_Hdmi_cal.acdb:system/etc/acdbdata/Liquid/Liquid_Hdmi_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_Bluetooth_cal.acdb:system/etc/acdbdata/Liquid/Liquid_Bluetooth_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_General_cal.acdb:system/etc/acdbdata/Liquid/Liquid_General_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_Global_cal.acdb:system/etc/acdbdata/Liquid/Liquid_Global_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_Headset_cal.acdb:system/etc/acdbdata/Liquid/Liquid_Headset_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_Handset_cal.acdb:system/etc/acdbdata/Liquid/Liquid_Handset_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_Speaker_cal.acdb:system/etc/acdbdata/Liquid/Liquid_Speaker_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1/workspaceFile.qwsp:system/etc/acdbdata/MTP/X1/workspaceFile.qwsp \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1/MTP_Speaker_cal.acdb:system/etc/acdbdata/MTP/X1/MTP_Speaker_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1/MTP_Hdmi_cal.acdb:system/etc/acdbdata/MTP/X1/MTP_Hdmi_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1/MTP_Handset_cal.acdb:system/etc/acdbdata/MTP/X1/MTP_Handset_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1/MTP_Bluetooth_cal.acdb:system/etc/acdbdata/MTP/X1/MTP_Bluetooth_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1/MTP_General_cal.acdb:system/etc/acdbdata/MTP/X1/MTP_General_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1/MTP_Global_cal.acdb:system/etc/acdbdata/MTP/X1/MTP_Global_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1/MTP_Headset_cal.acdb:system/etc/acdbdata/MTP/X1/MTP_Headset_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1_NA/workspaceFile.qwsp:system/etc/acdbdata/MTP/X1_NA/workspaceFile.qwsp \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1_NA/MTP_Speaker_cal.acdb:system/etc/acdbdata/MTP/X1_NA/MTP_Speaker_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1_NA/MTP_Hdmi_cal.acdb:system/etc/acdbdata/MTP/X1_NA/MTP_Hdmi_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1_NA/MTP_Handset_cal.acdb:system/etc/acdbdata/MTP/X1_NA/MTP_Handset_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1_NA/MTP_Bluetooth_cal.acdb:system/etc/acdbdata/MTP/X1_NA/MTP_Bluetooth_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1_NA/MTP_General_cal.acdb:system/etc/acdbdata/MTP/X1_NA/MTP_General_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1_NA/MTP_Global_cal.acdb:system/etc/acdbdata/MTP/X1_NA/MTP_Global_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/X1_NA/MTP_Headset_cal.acdb:system/etc/acdbdata/MTP/X1_NA/MTP_Headset_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MTP_Speaker_cal.acdb:system/etc/acdbdata/MTP/MTP_Speaker_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MTP_Hdmi_cal.acdb:system/etc/acdbdata/MTP/MTP_Hdmi_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MAX1/workspaceFile.qwsp:system/etc/acdbdata/MTP/MAX1/workspaceFile.qwsp \
+    $(LOCAL_PATH)/audio/acdb/MTP/MAX1/MTP_Speaker_cal.acdb:system/etc/acdbdata/MTP/MAX1/MTP_Speaker_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MAX1/MTP_Hdmi_cal.acdb:system/etc/acdbdata/MTP/MAX1/MTP_Hdmi_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MAX1/MTP_Handset_cal.acdb:system/etc/acdbdata/MTP/MAX1/MTP_Handset_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MAX1/MTP_Bluetooth_cal.acdb:system/etc/acdbdata/MTP/MAX1/MTP_Bluetooth_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MAX1/MTP_General_cal.acdb:system/etc/acdbdata/MTP/MAX1/MTP_General_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MAX1/MTP_Global_cal.acdb:system/etc/acdbdata/MTP/MAX1/MTP_Global_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MAX1/MTP_Headset_cal.acdb:system/etc/acdbdata/MTP/MAX1/MTP_Headset_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MTP_Handset_cal.acdb:system/etc/acdbdata/MTP/MTP_Handset_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MTP_Bluetooth_cal.acdb:system/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MTP_General_cal.acdb:system/etc/acdbdata/MTP/MTP_General_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MTP_Global_cal.acdb:system/etc/acdbdata/MTP/MTP_Global_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/MTP/MTP_Headset_cal.acdb:system/etc/acdbdata/MTP/MTP_Headset_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_Handset_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Handset_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_General_cal.acdb:system/etc/acdbdata/Fluid/Fluid_General_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_Global_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Global_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_Hdmi_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Hdmi_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_Headset_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Headset_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_Bluetooth_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Bluetooth_cal.acdb \
+    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_Speaker_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Speaker_cal.acdb \
     $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
@@ -204,7 +254,29 @@ PRODUCT_BOOT_JARS += qcmediaplayer
 
 # Modules
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/modules/core_ctl.ko:system/lib/modules/core_ctl.ko
+    $(LOCAL_PATH)/modules/ansi_cprng.ko:system/lib/modules/ansi_cprng.ko \
+    $(LOCAL_PATH)/modules/core_ctl.ko:system/lib/modules/core_ctl.ko \
+    $(LOCAL_PATH)/modules/evbug.ko:system/lib/modules/evbug.ko \
+    $(LOCAL_PATH)/modules/gpio_axis.ko:system/lib/modules/gpio_axis.ko \
+    $(LOCAL_PATH)/modules/gpio_event.ko:system/lib/modules/gpio_event.ko \
+    $(LOCAL_PATH)/modules/gpio_input.ko:system/lib/modules/gpio_input.ko \
+    $(LOCAL_PATH)/modules/gpio_matrix.ko:system/lib/modules/gpio_matrix.ko \
+    $(LOCAL_PATH)/modules/gpio_output.ko:system/lib/modules/gpio_output.ko \
+    $(LOCAL_PATH)/modules/gspca_main.ko:system/lib/modules/gspca_main.ko \
+    $(LOCAL_PATH)/modules/mcDrvModule.ko:system/lib/modules/mcDrvModule.ko \
+    $(LOCAL_PATH)/modules/mcKernelApi.ko:system/lib/modules/mcKernelApi.ko \
+    $(LOCAL_PATH)/modules/mmc_block_test.ko:system/lib/modules/mmc_block_test.ko \
+    $(LOCAL_PATH)/modules/mmc_test.ko:system/lib/modules/mmc_test.ko \
+    $(LOCAL_PATH)/modules/msm-buspm-dev.ko:system/lib/modules/msm-buspm-dev.ko \
+    $(LOCAL_PATH)/modules/qca_cld/qca_cld_wlan.ko:system/lib/modules/qca_cld/qca_cld_wlan.ko \
+    $(LOCAL_PATH)/modules/sii6400drv.ko:system/lib/modules/sii6400drv.ko \
+    $(LOCAL_PATH)/modules/spidev.ko:system/lib/modules/spidev.ko \
+    $(LOCAL_PATH)/modules/test-iosched.ko:system/lib/modules/test-iosched.ko \
+    $(LOCAL_PATH)/modules/ufs_test.ko:system/lib/modules/ufs_test.ko \
+    $(LOCAL_PATH)/modules/ufsd.ko:system/lib/modules/ufsd.ko \
+    $(LOCAL_PATH)/modules/wil6210.ko:system/lib/modules/wil6210.ko \
+    $(LOCAL_PATH)/modules/wlan.ko:system/lib/modules/wlan.ko
+
 
 # Power
 PRODUCT_PACKAGES += \
