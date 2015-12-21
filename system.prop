@@ -2,6 +2,7 @@
 
 ro.build.product=x1_na
 ro.product.device=x1_na
+ro.product.model=Le 1 Pro
 ro.build.description=x1_na-user 5.0.2 BGXNAOP5000710231S 51 release-keys
 ro.build.fingerprint=Letv/Le1Pro_US/x1_na:5.0.2/BGXNAOP5000710231S/51:user/release-keys
 
