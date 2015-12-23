@@ -22,3 +22,7 @@ allow qmux sysfs:file rw_file_perms;
 
 # qmux currently runs as root: b/16988307
 allow qmux self:capability { dac_override };
+
+#============= qmuxd ==============
+allow qmuxd socket_device:dir { write add_name };
+allow qmuxd socket_device:sock_file { create setattr };

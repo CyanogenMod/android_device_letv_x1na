@@ -205,6 +205,7 @@ BOARD_SEPOLICY_UNION += \
     rmt_storage.te \
     ueventd.te \
     sensors.te \
+    servicemanager.te \
     surfaceflinger.te \
     system_app.te \
     system_server.te \

@@ -1,5 +1,6 @@
 type adspd_socket, file_type;
 type mpdecision_socket, file_type;
+type dts_file, file_type;
 
 type fsg_file, fs_type, contextmount_type;
 

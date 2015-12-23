@@ -1,4 +1,7 @@
 type adspd_device, dev_type;
+type amp_exec, exec_type, file_type;
+type amp_data_type, file_type;
+type firmware_exec, exec_type, file_type;
 
 type drm_block_device, dev_type;
 
