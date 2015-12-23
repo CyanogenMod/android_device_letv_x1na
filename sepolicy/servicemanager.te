@@ -2,3 +2,14 @@
 allow servicemanager init:dir search;
 allow servicemanager init:file { read open };
 allow servicemanager init:process getattr;
+
+#============= untrusted_app ==============
+allow untrusted_app adsprpcd_exec:file getattr;
+allow untrusted_app audiod_exec:file getattr;
+allow untrusted_app bluetooth_loader_exec:file getattr;
+allow untrusted_app bootanim_exec:file getattr;
+allow untrusted_app clatd_exec:file getattr;
+allow untrusted_app cnd_exec:file getattr;
+allow untrusted_app debuggerd_exec:file getattr;
+allow untrusted_app logd_exec:file getattr;
+allow untrusted_app wcnss_service_exec:file getattr;
